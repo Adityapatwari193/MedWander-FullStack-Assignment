@@ -5,11 +5,13 @@ const ExcelJS = require('exceljs');
 const fs = require('fs');
 const path = require('path');
 const validateFormData = require('./validateMiddleware');
+const cors = require('cors'); // Import cors package
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -57,16 +59,15 @@ app.post('/submit', validateFormData, (req, res) => {
 
 
 
-app.get('/api/export-excel', async (req, res) => {
+app.get('/getdata', async (req, res) => {
     try {
         // Fetch data from database
         const selectQuery = 'SELECT * FROM forms';
         const [rows] = await db.promise().query(selectQuery);
 
-        // Path to the Excel file
+        
         const filePath = path.join(__dirname, 'forms.xlsx');
 
-        
         const workbook = new ExcelJS.Workbook();
         let sheet = workbook.getWorksheet('Forms');
         if (!sheet) {
@@ -84,7 +85,7 @@ app.get('/api/export-excel', async (req, res) => {
 
         // Add rows from database to Excel sheet
         rows.forEach(row => {
-            console.log('Adding row:', row); // Debugging: log the row being added
+            console.log('Adding row:', row); 
             sheet.addRow({
                 id: row.id,
                 form_type: row.form_type,
@@ -94,7 +95,7 @@ app.get('/api/export-excel', async (req, res) => {
             });
         });
 
-        // Save the workbook to a file
+        
         await workbook.xlsx.writeFile(filePath);
 
         // Open the Excel file using the default application
@@ -102,10 +103,10 @@ app.get('/api/export-excel', async (req, res) => {
         await open.default(filePath);
 
         // Send response message
-        res.status(200).send('Excel file created and opened successfully');
+        res.status(200).json({ message: 'Excel file created and opened successfully' });
     } catch (error) {
         console.error('Error exporting to Excel:', error);
-        res.status(500).send('Server error');
+        res.status(500).json({ message: 'Server error or Please close the Excel file before sending another request' });
     }
 });
 

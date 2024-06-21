@@ -1,0 +1,26 @@
+.header {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(33, 165, 33, 0.1);
+    position: sticky;
+    top: 0; 
+    z-index: 1000; 
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+    margin-right:650px;
+  }
+  
+  .header-logo {
+    height: 40px;
+    width: auto;
+  }
+  

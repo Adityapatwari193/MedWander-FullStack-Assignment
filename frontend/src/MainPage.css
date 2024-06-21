@@ -1,0 +1,52 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    margin-left:10px;
+    margin-bottom:50px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 320px;
+  }
+  
+  .form-button, .refresh-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 200px; 
+  }
+  
+  .form-button:hover, .refresh-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .button-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .form-button, .refresh-button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

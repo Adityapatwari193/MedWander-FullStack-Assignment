@@ -1,15 +1,14 @@
 // validationMiddleware.js
 
 const countryPhonePatterns = {
-    '1': /^\d{10}$/, // Example: USA, Canada
-    '44': /^\d{10}$/, // Example: UK
-    '91': /^\d{10}$/, // Example: India
-    // Add other country codes and their phone number patterns here
-    '61': /^\d{9}$/,  // Example: Australia
-    '86': /^\d{11}$/, // Example: China
-    '81': /^\d{10}$/, // Example: Japan
-    '27': /^\d{9}$/   // Example: South Africa
-    // Add more as needed
+    '1': /^\d{10}$/, 
+    '44': /^\d{10}$/, 
+    '91': /^\d{10}$/, 
+    '61': /^\d{9}$/,  
+    '86': /^\d{11}$/, 
+    '81': /^\d{10}$/, 
+    '27': /^\d{9}$/   
+    
 };
 
 const validateFormData = (req, res, next) => {
@@ -28,7 +27,7 @@ const validateFormData = (req, res, next) => {
         return res.status(400).send('Invalid phone number');
     }
 
-    // If validation passes, proceed to the next middleware or route handler
+    
     next();
 };
 
